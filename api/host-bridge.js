@@ -20,8 +20,7 @@ setInterval(function(){
 
 function swapHost(){
 
-  if(window?.location?.href.includes?.('/std')
-    ||window?.location?.href.includes?.('/api')
+  if(window?.location?.href.includes?.('/api')
     ||window?.location?.href.includes?.('@')
     ||window?.location?.href.includes?.('/manual')){
 
@@ -36,6 +35,16 @@ function swapHost(){
     }
 
    }
+
+   if(window?.location?.href.includes?.('/std')){
+     if(!(window.location.href.startsWith('https://std-')||!(window.location.href.startsWith('https://docs-std-')))){
+
+       window.location.href=window.location.href.replaceAll('docs-','').split('?')[0].replace('https://','https://std-');
+
+       
+     }
+   }
+  
 
 }
 
