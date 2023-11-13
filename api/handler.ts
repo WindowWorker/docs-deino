@@ -25,6 +25,7 @@ export default async function (req: Request) {
   if ((req.method == "OPTIONS")||(req.url=='*')) {
     return new Response("",{headers:{Allow: "OPTIONS, GET, HEAD, POST"}});
   }
+ 
   let reqURL = req.url.replace('_root/','').replace('_root','');
   let url=reqURL.split('/');
   let flatURL = reqURL.split('?')[0].split('#')[0];
@@ -37,6 +38,7 @@ export default async function (req: Request) {
     url[2]=docsTarget;
   }
   let request = new Request(url.join("/"));
+  
   for (let header in request.headers.keys) {
     if (header) {
       if (skipRequestHeaders.includes(header.toLowerCase())) {
@@ -48,6 +50,7 @@ export default async function (req: Request) {
       );
     }
   }
+  request = addCacheHeaders(request);
   let res = await fetch(request);
 
   let body = "";
@@ -119,5 +122,26 @@ export default async function (req: Request) {
     response.headers.set('Content-Type','image/jpeg');
   }
   //console.log(response.headers.get('content-type'));
+  response = addCacheHeaders(response);
   return response;
+}
+
+
+function addCacheHeaders(re){
+  re.headers.set("CDN-Cache-Control",
+    "public, max-age=96400, s-max-age=96400, stale-if-error=31535000, stale-while-revalidate=31535000"
+ );
+  re.headers.set("Cache-Control",
+   "public, max-age=96400, s-max-age=96400, stale-if-error=31535000, stale-while-revalidate=31535000"
+);
+  re.headers.set( "Cloudflare-CDN-Cache-Control",
+    "public, max-age=96400, s-max-age=96400, stale-if-error=31535000, stale-while-revalidate=31535000"
+);
+  re.headers.set("Surrogate-Control",
+   "public, max-age=96400, s-max-age=96400, stale-if-error=31535000, stale-while-revalidate=31535000"
+);
+  re.headers.set("Vercel-CDN-Cache-Control",
+   "public, max-age=96400, s-max-age=96400, stale-if-error=31535000, stale-while-revalidate=31535000"
+);
+  return re;
 }
