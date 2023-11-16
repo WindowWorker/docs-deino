@@ -2,8 +2,8 @@ globalThis.reactLinkResover=LinkResolver;
 
 if(window?.location?.href.includes?.('/std')
     ||window?.location?.href.includes?.('/x/')
-   ||window?.location?.href.includes?.('/api')
-   ||window?.location?.href.includes?.('@')
+    ||window?.location?.href.includes?.('/api')
+    ||window?.location?.href.includes?.('@')
    ||window?.location?.href.includes?.('/manual')
    ||window?.location?.href.includes?.('hostname=docs.deno.com')){
   LinkResolver();
@@ -14,7 +14,7 @@ if((window?.location?.pathname=='/')&&(!window.location.href.includes('fresh')))
 }
 
 function LinkResolver(){
-  
+
 if(!globalThis.hostTargetList){
   globalThis.hostTargetList = ['deno.land','deno.com','www.deno.com','docs.deno.com','www.deno.land','fresh.deno.dev','examples.deno.land','doc.deno.land'];
 
@@ -27,15 +27,15 @@ if(!globalThis.hostTargetList){
 
 
 document.addEventListener("readystatechange", (event) => {
-  linkSheets();
+  linkSheetsAsync();
 });
 
 document.addEventListener("DOMContentLoaded", (event) => {
-  linkSheets();
+  linkSheetsAsync();
 });
 
 document.addEventListener("load", (event) => {
-  linkSheets();
+  linkSheetsAsync();
 });
 
 
@@ -53,7 +53,7 @@ setInterval(function(){
 function addLocation(){
   let h = document.querySelector('html:not([location])');
   if(h){h.setAttribute('location',location.href);}
-  
+
 }
 
 async function transformLinks(attr){
@@ -226,10 +226,10 @@ const elems_length = elems.length;
   for(let i=0;i<elems_length;i++){try{
 
   elems[i].setAttribute('style',elems[i].getAttribute('style').replaceAll('&quot;',''));
-    
+
   }catch(e){continue;}}
 
-  
+
 }
 
   function homeLink(){
@@ -238,9 +238,9 @@ const elems_length = elems.length;
     dk.onclick=function(){window.location.href='https://deno.typescripts.org/';};
     dk.style.cursor='pointer';
     dk.document.querySelector('a[href^="https://deno.typescripts.org/?"]').removeAttribute('href');
-    
+
   }
-  
+
 }
 
 globalThis['link-resolver-import']=`<script>void `+
