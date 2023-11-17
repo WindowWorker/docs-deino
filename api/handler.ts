@@ -3,6 +3,7 @@ import './text-rewriter.js';
 import './dino.css.js';
 import './dino.js';
 import './host-bridge.js';
+import './highlight.js';
 let hostTarget = "docs.deno.com";
 let docsTarget = "docs.deno.com";
 
@@ -18,7 +19,8 @@ let injects = globalThis['link-resolver-import']+
   globalThis['text-rewriter']+
   globalThis.dinoCSS+ 
   globalThis.dino+
-  globalThis['host-bridge'];
+  globalThis['host-bridge']+
+   globalThis.highlight;
 
 export default async function (req: Request) {
 try{
