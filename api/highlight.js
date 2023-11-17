@@ -1,5 +1,10 @@
 
 
+if(window?.location){
+  Highlight();
+}
+
+
 
 
 
@@ -140,8 +145,3 @@ document.body.appendChild(m);
 
 globalThis.highlight=`<script>void `+Highlight+`();</script>`;
 
-
-
-if(window?.location){
-  Highlight();
-}
