@@ -1,6 +1,15 @@
 
 
+function unlight(){
 
+  let startH=document.querySelectorAll('[highlighted]');
+  let startH_length=startH.length;
+  for(let i=0;i<startH_length;i++){
+
+    startH[i].removeAttribute('highlighted');
+
+  }
+}
 
 
 
@@ -9,13 +18,10 @@ function Highlight(){
   globalThis.R=`
   `;
 
-  let startH=document.querySelectorAll('[highlighted]');
-  let startH_length=startH.length;
-  for(let i=0;i<startH_length;i++){
-  
-    startH[i].removeAttribute('highlighted');
-    
-  }
+  unlight();
+  setTimeout(function(){unlight();},1000);
+  setTimeout(function(){unlight();},2000);
+  setTimeout(function(){unlight();},3000);
 
 globalThis.sleep=function(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
