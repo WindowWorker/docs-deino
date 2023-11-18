@@ -10,7 +10,15 @@ globalThis.sleep=function(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-
+function highlighter(){
+  if(document.querySelector('highlight-me')){
+    try{
+    if(Prism){
+      Prism?.highlightAll?.();
+      }
+      }catch(e){}
+  }
+}
 
 void async function getPrism(){
 
@@ -42,11 +50,11 @@ if(window.location.href.includes('/docs/handbook/tsconfig-json.html')){return;}*
   [class="font-mono"]:not([highlighted])`);
   let faces_length=faces.length;
   for(let i=0;i<faces_length;i++){
-    faces[i].outerHTML=('<pre style="border-radius:1vmax;"><code>'+faces[i].outerHTML.replaceAll('&lt;','≺')+'</code></pre>')
+    faces[i].outerHTML=('<pre style="border-radius:1vmax;"><code><highlight-me></highlight-me>'+faces[i].outerHTML.replaceAll('&lt;','≺')+'</code></pre>')
       .replace('<code><pre','<pre').replace('</pre></code>','</pre>');
     faces[i].setAttribute('highlighted','true');
   }
-  
+
   let thisLang = 'typescript';
   let codes=document.querySelectorAll('code>pre:not([highlighted]),pre:not([highlighted]):has(code.html-code),pre:not([highlighted]):has(code):not(:has(.language-id,span[style*="color: #"]))');
   let codes_length=codes.length;
@@ -75,7 +83,7 @@ if(window.location.href.includes('/docs/handbook/tsconfig-json.html')){return;}*
       .replace('-cpp','-clike')
       ;//.replace('shell','docker');
   }  
-    let codetext='<code class="'+mylang+'">'+codes[i].innerHTML.toString()
+    let codetext='<code class="'+mylang+'"><highlight-me></highlight-me>'+codes[i].innerHTML.toString()
       .replaceAll('<br>',`
     `)
       +
@@ -99,7 +107,7 @@ if(window.location.href.includes('/docs/handbook/tsconfig-json.html')){return;}*
   }
   try{
   if(Prism){
-    Prism?.highlightAll?.();
+    highlighter();
     }
     }catch(e){}
   if(!document.querySelector('[id="prismmincss"]')){
@@ -129,7 +137,7 @@ if(document.body){
     g.id="prismgominjs";
     g.onload=function(){
 
-    globalThis.Prism=Prism;Prism.highlightAll();
+    globalThis.Prism=Prism;highlighter();
 
     let ss = document.createElement('style');
     ss.innerHTML='code[class*="language-"], pre[class*="language-"]{color:blue;}  .line>span[style="color: #008000"]:first-child{text-wrap:pretty;} .line>span{--background-color:#f5f8ff;} .language-shell [class="token operator"]{color:green !important;} pre,code{text-shadow:none !important;} pre[clsee*="language-typescript"]{color:blue;} code[clsee*="language-typescript"]{color:blue;}';
