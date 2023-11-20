@@ -27,8 +27,8 @@ function Highlight(){
     for(let i=0;i<startH_length;i++){
 
       if((startH[i].children.length>2)
-      &&(startH[i].innerText.includes(R))
-      &&(startsH[i].innerText.trim().length>50)){
+      &&((startH[i].innerText.includes(R))
+      ||(startsH[i].innerText.trim().length>50))){
         startH[i].removeAttribute('highlighted');
       }
 
