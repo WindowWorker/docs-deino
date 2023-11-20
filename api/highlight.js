@@ -60,6 +60,14 @@ function highlighter(){
   }
 }
 
+  function highlighterSelect(){
+
+    let hs=document.querySelectorAll('[highlight-count]:not(:has(.token))');
+    for(let i=0 ; i<hs.length ; i++){
+      Prism?.highlightElement?.(hs[i]);
+    }
+  }
+
 void async function getPrism(){
 
   addEventListener("DOMContentLoaded", (event) => {
@@ -110,7 +118,7 @@ if(window.location.href.includes('/docs/handbook/tsconfig-json.html')){return;}*
         }else{
           codes[i].appendChild(document.createElement('highlight-me'));
         }
-        highlighter();
+        highlighterSelect();
         continue;
       }else{
         hlc++;
