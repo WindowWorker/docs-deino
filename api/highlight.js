@@ -54,7 +54,10 @@ function highlighter(){
   if(document.querySelector('highlight-me')){
     try{
     if(Prism){
-      Prism?.highlightAll?.();
+      let hs=document.querySelectorAll('[highlight-count]:not(:has(.token))');
+      for(let i=0 ; i<hs.length ; i++){try{
+        Prism?.highlightElement?.(hs[i]);
+      }catch(e){continue;}}
       }
       }catch(e){}
   }
@@ -63,9 +66,9 @@ function highlighter(){
   function highlighterSelect(){
 
     let hs=document.querySelectorAll('[highlight-count]:not(:has(.token))');
-    for(let i=0 ; i<hs.length ; i++){
+    for(let i=0 ; i<hs.length ; i++){try{
       Prism?.highlightElement?.(hs[i]);
-    }
+    }catch(e){continue;}}
   }
 
 void async function getPrism(){
