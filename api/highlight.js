@@ -5,6 +5,8 @@
 
 function Highlight(){
 
+
+
   globalThis.R=`
   `.split(' ')[0];
 
@@ -30,7 +32,7 @@ function Highlight(){
       &&((startH[i].innerText.includes(R))
       ||(startH[i].innerText.trim().length>50))){
         startH[i].removeAttribute('highlighted');
-        startH[i].setAttribute('highlight-count','0');
+        //startH[i].setAttribute('highlight-count','0');
       }
 
     }
@@ -100,7 +102,7 @@ if(window.location.href.includes('/docs/handbook/tsconfig-json.html')){return;}*
     let hlc = 0;
     if(codes[i].hasAttribute('highlight-count')){
       hlc=parseInt(codes[i].getAttribute('highlight-count'));
-      if(hlc>=10){
+      if(hlc>=100){
         continue;
       }else{
         hlc++;
