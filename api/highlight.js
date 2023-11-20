@@ -5,7 +5,7 @@
 
 function Highlight(){
 
-  let tks=document.querySelectorAll('[class*="token"]');
+  let tks=document.querySelectorAll(':not(.block)>[class*="token"]');
   for(let i=0 ; i<tks.length ; i++){try{
     tks[i].setAttribute('class',tks[i].getAttribute('class').replaceAll('token','')+' poop');
   }catch(e){continue;}}
