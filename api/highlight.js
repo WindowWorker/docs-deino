@@ -148,6 +148,7 @@ if(window.location.href.includes('/docs/handbook/tsconfig-json.html')){return;}*
       .replace('elisp','typescript')
       .replace('toml','typescript')
       .replace('banana','yaml')
+      .replace('graphql','yaml')
       .replace('-shell','apple')
       .replace('-sh','-typescript')
       .replace('-bash','-typescript')
