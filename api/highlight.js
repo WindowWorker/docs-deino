@@ -4,15 +4,15 @@
 
 
 function Highlight(){
-if(globalThis.HighlightRunning){return;}
-globalThis.HighlightRunning=true;
+ // if(globalThis.HighlightRunning){return;}
+ // globalThis.HighlightRunning=true;
 function arraySelectorAll(css){
 
   return Array.from(document.querySelectorAll(css));
 
 }
 
-  if(document.querySelector('.block')){return;}
+  //if(document.querySelector('.block')){return;}
   let tks=arraySelectorAll('pre:has(.block)');
   for(let i=0 ; i<tks.length ; i++){try{
     tks[i].setAttribute('highlight-done','true');
@@ -28,31 +28,32 @@ function arraySelectorAll(css){
   let doublecodes_length=doublecodes.length;
   for(let i=0;i<doublecodes_length;i++){try{
 
-    doublecodes[i].parentElement.innerHTML=doubleCodes[i].innerHTML.toString();
+    let htm = doubleCodes[i].innerHTML.toString();
+    doublecodes[i].parentElement.innerHTML=htm;
 
   }catch(e){continue;}}
 
     doublecodes=arraySelectorAll('pre>pre');
     doublecodes_length=doublecodes.length;
     for(let i=0;i<doublecodes_length;i++){try{
-
-      doublecodes[i].parentElement.innerHTML=doubleCodes[i].innerHTML.toString();
+      let htm = doubleCodes[i].innerHTML.toString();
+      doublecodes[i].parentElement.innerHTML=htm;
 
     }catch(e){continue;}}
 
     doublecodes=document.querySelectorAll('code>*>code');
     doublecodes_length=doublecodes.length;
     for(let i=0;i<doublecodes_length;i++){try{
-
-      doublecodes[i].parentElement.parentElement.innerHTML=doubleCodes[i].innerHTML.toString();
+      let htm=doubleCodes[i].innerHTML.toString();
+      doublecodes[i].parentElement.parentElement.innerHTML=htm;
 
     }catch(e){continue;}}
 
     doublecodes=document.querySelectorAll('pre>*>pre');
     doublecodes_length=doublecodes.length;
     for(let i=0;i<doublecodes_length;i++){try{
-
-      doublecodes[i].parentElement.parentElement.innerHTML=doubleCodes[i].innerHTML.toString();
+      let htm=doubleCodes[i].innerHTML.toString();
+      doublecodes[i].parentElement.parentElement.innerHTML=htm;
 
     }catch(e){continue;}}
 
@@ -147,7 +148,7 @@ setTimeout(function(){getp();},1);
 
 
 async function getp(){
-
+  stripCodes();
 /*if(window.location.href.includes('/docs/handbook/declaration-files/dts-from-js.html')){return;}
 
 if(window.location.href.includes('/docs/handbook/tsconfig-json.html')){return;}*/
@@ -195,14 +196,14 @@ if(window.location.href.includes('/docs/handbook/tsconfig-json.html')){return;}*
           codes[i].setAttribute('highlight-done',true);
           hlc++;
           codes[i].setAttribute('highlight-count',hlc);
-          window.stop();
-          return;
+         // window.stop();
+         // return;
         }
         if(hlc>40){
           codes[i].setAttribute('highlight-done',true);
           hlc++;
           codes[i].setAttribute('highlight-count',hlc);
-          return;
+         // return;
         }
         if(hlc>30){
           codes[i].setAttribute('highlight-done',true);
@@ -340,6 +341,6 @@ globalThis.highlight=`<scr`+`ipt>void `+Highlight+`();</scr`+`ipt>`;
 
 if(window?.location){
   Highlight();
-  setTimeout(function(){Highlight();},2000);
+  //setTimeout(function(){Highlight();},2000);
 }
 
