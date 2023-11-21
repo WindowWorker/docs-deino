@@ -171,6 +171,25 @@ if(window.location.href.includes('/docs/handbook/tsconfig-json.html')){return;}*
           codes[i].appendChild(document.createElement('highlight-me'));
         }
         highlighter();
+        if(hlc>50){
+          codes[i].setAttribute('highlight-done',true);
+          hlc++;
+          codes[i].setAttribute('highlight-count',hlc);
+          window.stop();
+          return;
+        }
+        if(hlc>40){
+          codes[i].setAttribute('highlight-done',true);
+          hlc++;
+          codes[i].setAttribute('highlight-count',hlc);
+          return;
+        }
+        if(hlc>30){
+          codes[i].setAttribute('highlight-done',true);
+          hlc++;
+          codes[i].setAttribute('highlight-count',hlc);
+          break;
+        }
         if(hlc>20){
           codes[i].setAttribute('highlight-done',true);
           hlc++;
