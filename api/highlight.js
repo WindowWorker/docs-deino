@@ -18,11 +18,13 @@ function arraySelectorAll(css){
     tks[i].setAttribute('highlight-done','true');
   }catch(e){continue;}}
 
+  if((!(document.querySelector('[highlight-count]')))||(document.querySelector('highlight-me'))){
   tks=arraySelectorAll(':not(.block)>[class*="token"]');
   for(let i=0 ; i<tks.length ; i++){try{
+
     tks[i].setAttribute('class',tks[i].getAttribute('class').replaceAll('token','')+' poop');
   }catch(e){continue;}}
-
+  }
   function stripCodes(){
   let doublecodes=arraySelectorAll('code>code');
   let doublecodes_length=doublecodes.length;
@@ -173,8 +175,8 @@ if(window.location.href.includes('/docs/handbook/tsconfig-json.html')){return;}*
     if(faces[i].getAttribute('class').includes('font-mono')){
       faces[i].setAttribute('class','font-mono'+' language-typescript');
     }
-      
-    
+
+
     if(faces[i].getAttribute('class').includes('tw-')||faces[i].getAttribute('class').includes('font-mono')){faces[i].outerHTML=('<pre style="border-radius:1vmax;" class="'+faces[i].getAttribute('class')+'" highlight-count=0><code highlighted=true><highlight-me></highlight-me>'+faces[i].outerHTML.toString().replaceAll('&lt;','≺')+'</code></pre>')
       .replace('<code highlighted=true><highlight-me></highlight-me><pre','<pre')
       .replace('<code><pre','<pre').replace('</pre></code>','</pre>');
