@@ -146,12 +146,12 @@ setInterval(function(){unlightEmpty();},500);
 async function highlighter(){
   if(document.querySelector('highlight-me')){
     try{
-    if(Prasm){
+    if(globalThis.Prasm){
       let hs=arraySelectorAll('[highlight-count]:not(:has(.token))');
       let hs_length=Math.min(hs.length,77);
       for(let i=0 ; i<hs_length ; i++){try{
         await asunc();
-        Prasm?.highlightElement?.(hs[i]);
+        globalThis.Prasm?.highlightElement?.(hs[i]);
       }catch(e){continue;}}
       }
       }catch(e){}
@@ -164,7 +164,7 @@ async function highlighter(){
     let hs_length=Math.min(hs.length,77);
     for(let i=0 ; i<hs.length ; i++){try{
       await asunc();
-      Prasm?.highlightElement?.(hs[i]);
+      globalThis.Prasm?.highlightElement?.(hs[i]);
     }catch(e){continue;}}
   }
 
@@ -183,7 +183,7 @@ setTimeout(function(){getp();},1);
 async function getp(){
   stripCodes();
 
-  if(Prism&&(!Prasm)){globalThis.Prasm=Prism;}
+  if(Prism&&(!(globalThis.Prasm))){globalThis.Prasm=Prism;}
 /*if(window.location.href.includes('/docs/handbook/declaration-files/dts-from-js.html')){return;}
 
 if(window.location.href.includes('/docs/handbook/tsconfig-json.html')){return;}*/
@@ -315,7 +315,7 @@ if(window.location.href.includes('/docs/handbook/tsconfig-json.html')){return;}*
     codes[i].setAttribute('highlighted','true');
   }
   try{
-  if(Prasm){
+  if(globalThis.Prasm){
     highlighter();if(hlc<=5){highlighterSelect();}
     }
     }catch(e){}
