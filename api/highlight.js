@@ -100,8 +100,8 @@ await asunc();
     }catch(e){console.log(e);break;}}
 
   }
-  stripCodes();
-  setInterval(function(){stripCodes();},100);
+  //stripCodes();
+  //setInterval(function(){stripCodes();},100);
 
   globalThis.R=`
   `.split(' ')[0];
