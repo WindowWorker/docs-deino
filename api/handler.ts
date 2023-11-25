@@ -4,7 +4,7 @@ import './dino.css.js';
 import './dino.js';
 import './host-bridge.js';
 import './highlight.js';
-let hostTarget = "docs.deno.com";
+let hostTarget = "deno.land";
 let docsTarget = "docs.deno.com";
 
 const skipRequestHeaders: string[] = ['x-forwarded-for'];
@@ -20,14 +20,13 @@ let injects = globalThis['link-resolver-import']+
   globalThis.dinoCSS+ 
   globalThis.dino+
   globalThis['host-bridge']+
-   globalThis.highlight;
+  globalThis.highlight;
 
 export default async function (req: Request) {
-try{
+  try{
   if ((req.method == "OPTIONS")||(req.url=='*')) {
     return new Response("",{headers:{Allow: "OPTIONS, GET, HEAD, POST"}});
   }
- 
   let reqURL = req.url.replace('_root/','').replace('_root','');
   let url=reqURL.split('/');
   let flatURL = reqURL.split('?')[0].split('#')[0];
@@ -40,7 +39,6 @@ try{
     url[2]=docsTarget;
   }
   let request = new Request(url.join("/"));
-  
   for (let header in request.headers.keys) {
     if (header) {
       if (skipRequestHeaders.includes(header.toLowerCase())) {
@@ -71,6 +69,7 @@ try{
    if(ct.includes('text')){
       let headText=injects;
       body=(await res.text())
+        .replace("delete globalThis.Prism","")
         .replace('<head>','<head>'+headText)
         .replace('</head>',headText+'</head>');
       if(body.includes('<html')||ct.includes('plain')){htmlFlag=true;}
