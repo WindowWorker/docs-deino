@@ -5,6 +5,7 @@ if(window?.location?.href.includes?.('/std')
     ||window?.location?.href.includes?.('/api')
     ||window?.location?.href.includes?.('@')
    ||window?.location?.href.includes?.('/manual')
+   ||window?.location?.href.includes?.('/tutorials')
    ||window?.location?.href.includes?.('hostname=docs.deno.com')){
   HostBridge();
 }
@@ -23,7 +24,8 @@ function swapHost(){
 
   if(window?.location?.href?.includes?.('/api')
     ||window?.location?.href?.includes?.('@')
-    ||window?.location?.href?.includes?.('/manual')){
+    ||window?.location?.href?.includes?.('/manual')
+    ||window?.location?.href?.includes?.('/tutorials')){
 
     if((!(window.location.href.startsWith('https://docs-')))&&(!(window.location.href.startsWith('https://std-')))){
       let nextWindow=window.location.href.replaceAll(window.location.host,'docs-'+window.location.host).split('?')[0].replace('docs-docs-','docs-');
@@ -91,7 +93,7 @@ function swapHost(){
 
 
 
-  elems = document.querySelectorAll('a[href*="/manual"][href*="typescripts.org/"]:not(a[href^="https://docs-"]),a[href*="/api"][href*="typescripts.org/"]:not(a[href^="https://docs-"])');
+  elems = document.querySelectorAll('a[href*="/manual"][href*="typescripts.org/"]:not(a[href^="https://docs-"]),a[href*="/api"][href*="typescripts.org/"]:not(a[href^="https://docs-"]),a[href*="/tutorials"][href*="typescripts.org/"]:not(a[href^="https://docs-"])');
   elems_length=elems.length;
   for(let i=0;i<elems_length;i++){try{
 
@@ -100,7 +102,7 @@ function swapHost(){
   }catch(e){continue;}}
 
 
-  elems = document.querySelectorAll('a[href^="https://docs-"][href*="typescripts.org/"]:not([href*="/manual"],[href*="/api"])');
+  elems = document.querySelectorAll('a[href^="https://docs-"][href*="typescripts.org/"]:not([href*="/tutorials"],[href*="/manual"],[href*="/api"])');
   elems_length=elems.length;
   for(let i=0;i<elems_length;i++){try{
 
