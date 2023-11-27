@@ -4,7 +4,7 @@ import './dino.css.js';
 import './dino.js';
 import './host-bridge.js';
 import './highlight.js';
-let hostTarget = "deno.land";
+let hostTarget = "docs.deno.com";
 let docsTarget = "docs.deno.com";
 
 const skipRequestHeaders: string[] = ['x-forwarded-for'];
